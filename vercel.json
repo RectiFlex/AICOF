@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/**/*.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/$1"
+    }
+  ],
+  "env": {
+    "POSTGRES_URL": "@postgres_url",
+    "JWT_SECRET": "@jwt_secret",
+    "OPENAI_API_KEY": "@openai_api_key"
+  }
+}
